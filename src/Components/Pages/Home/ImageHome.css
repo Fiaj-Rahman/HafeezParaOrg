@@ -1,0 +1,40 @@
+.imageHome {
+    display: flex;
+    justify-content: center;
+    
+    gap: 10px; /* Add gap between items */
+    padding: 20px; /* Increased padding for a more spacious look */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.imageHome div {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    max-width: 400px; 
+}
+
+.grids {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 10px; 
+}
+
+img {
+    border-radius: 10px; /* Consistent rounded corners */
+    transition: transform 0.3s; /* Add a smooth zoom effect */
+}
+
+img:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+.OneImageHome{
+    width: 50%;
+}
+.TwoImageHome{
+    width: 50%;
+}

@@ -1,0 +1,129 @@
+/* UserList Container */
+.user-list-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+    background-color: #f9f9f9; /* Light background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for container */
+    border-radius: 10px;
+  }
+  
+  /* Title */
+  h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  /* Filter Select Box */
+  .filter-select {
+    margin-bottom: 20px;
+  }
+  
+  #role-filter {
+    padding: 10px 15px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+  
+  #role-filter:focus {
+    outline: none;
+    border-color: #2980b9;
+  }
+  
+  /* User Cards Grid */
+  .user-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Individual User Card */
+  .user-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+  }
+  
+  /* Hover effect on user card */
+  .user-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* User Photo Styling */
+  .user-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid #3498db;
+  }
+  
+  /* User Name */
+  h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* User Email */
+  .user-email {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* User Role */
+  .user-role {
+    font-size: 1em;
+    color: #555;
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .user-cards {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Smaller cards on mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .user-cards {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Further adjustment for small screens */
+    }
+  
+    .user-photo {
+      width: 80px; /* Smaller photo for small screens */
+      height: 80px;
+    }
+  
+    h2 {
+      font-size: 1.2em; /* Smaller font for user name */
+    }
+  
+    .user-email {
+      font-size: 0.8em; /* Smaller font for email */
+    }
+  
+    .user-role {
+      font-size: 0.9em; /* Smaller font for role */
+    }
+  }
+  
