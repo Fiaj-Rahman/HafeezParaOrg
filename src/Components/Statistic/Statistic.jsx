@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Statistic.css'; // Import the CSS file for styling
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 const Statistic = () => {
   const [userCount, setUserCount] = useState(0);
@@ -32,8 +33,15 @@ const Statistic = () => {
     fetchUserCounts();
   }, []);
 
+  // Data for the bar chart
+  const chartData = [
+    { name: 'Total Visitors', count: userCount },
+    { name: 'Total Admins', count: adminCount },
+    { name: 'Total Users', count: regularUserCount },
+  ];
+
   return (
-    <div className="statistic-container z-60 ">
+    <div className="statistic-container z-60">
       {/* Total Users */}
       <div className="statistic-card">
         <h2>Total Visitors</h2>
@@ -50,6 +58,19 @@ const Statistic = () => {
       <div className="statistic-card">
         <h2>Total Users</h2>
         <p className="user-count">{regularUserCount}</p>
+      </div>
+
+      {/* Bar Chart */}
+      <div style={{ width: '100%', height: 300, marginTop: '20px' }}>
+        <ResponsiveContainer>
+          <BarChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="count" fill="#3498db" />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

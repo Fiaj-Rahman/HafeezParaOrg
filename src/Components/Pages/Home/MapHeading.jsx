@@ -1,13 +1,19 @@
-import React from 'react';
+import React from "react";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const MapHeading = () => {
-    return (
-        <div>
-             <h1 className="text-4xl text-orange-900 font-serif font-bold text-center pt-10 mt-12 uppercase bg-gradient-to-r from-blue-700 via-white to-green-400 text-transparent bg-clip-text animate-gradient bg-300%">
-              Where is our location?
-            </h1>
-        </div>
-    );
+    const { theme } = useTheme();
+  return (
+    <div className="py-5">
+      <h1
+        className={`text-3xl sm:text-4xl md:text-4xl font-serif font-bold text-center my-10 uppercase ${
+          theme === "light" ? "text-black" : "text-white"
+        }`}
+      >
+        আমাদের অবস্থান
+      </h1>
+    </div>
+  );
 };
 
 export default MapHeading;

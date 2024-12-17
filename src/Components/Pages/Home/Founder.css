@@ -1,0 +1,62 @@
+/* Founder.css */
+
+.container {
+    max-width: 1200px; /* Optional: limit the width of the container */
+    margin: 0 auto; /* Center the container */
+    padding: 2rem; /* Add padding around the container */
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Arial', sans-serif; /* Example font, change as needed */
+    font-size: 2.5rem; /* Increased heading size */
+}
+
+.swiper-container {
+    padding: 1rem 0; /* Padding around the Swiper */
+}
+
+.swiper-slide {
+    width: auto; /* Use auto width for responsiveness */
+    height: 20rem; /* Fixed height for slides */
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    border-radius: 1rem; /* Rounded corners */
+    overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.swiper-slide img {
+    max-width: 100%; /* Make sure the image fits */
+    max-height: 100%; /* Ensure the image is contained within the slide */
+    object-fit: cover; /* Cover the entire area without distortion */
+    border-radius: 1rem; /* Match the border radius */
+}
+
+/* Navigation button styles */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff; /* Change color of the buttons */
+    width: 40px; /* Width of the button */
+    height: 40px; /* Height of the button */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure buttons are above other content */
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 20px; /* Icon size */
+}
+
+/* Position buttons */
+.swiper-button-next {
+    right: 10px; /* Positioning from the right */
+}
+
+.swiper-button-prev {
+    left: 10px; /* Positioning from the left */
+}

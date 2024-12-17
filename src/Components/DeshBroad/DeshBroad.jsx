@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import SlideBar from "../SliderBar/SliderBar";
+import Footer from "../OtherComponents/Shared/Footer/Footer";
 
 const DeshBroad = () => {
   return (
@@ -13,6 +14,7 @@ const DeshBroad = () => {
           <Outlet />
         </div>
       </div>
+
     </div>
   );
 };

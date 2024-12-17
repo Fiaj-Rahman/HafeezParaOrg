@@ -15,21 +15,23 @@ import PublishedDetails from '../PublishedDetails/PublishedDetails';
 import SocialWork from '../PublishedDetails/SocialWork';
 import Profile from '../Profile/Profile';
 import AboutUs from '../AboutUs/AboutUs';
-import AllActivites from '../PublishedDetails/AllActivites';
+import AllActivities from '../PublishedDetails/AllActivites';
+import ActivityDetails from '../Pages/Home/ActivityDetails';
+import BlogManagement from '../BlogDetails/BlogManagement';
+import BloodGrp from '../BloodGrp/BloodGrp';
 
-// Create router
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
-    errorElement: <ErrorPage />, // Error page for unmatched routes
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
-        element: <Home />, // Home page
+        element: <Home />,
       },
       {
-        path: '/room/:id', // Dynamic route for room details
+        path: '/room/:id',
         element: (
           <PrivateRoute>
             <RoomDetails />
@@ -37,63 +39,57 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/socialWork', // Social work route
+        path: '/socialWork',
         element: (
           <PrivateRoute>
-            <AllActivites></AllActivites>
+            <AllActivities />
           </PrivateRoute>
         ),
       },
-
       {
-        path: '/profile', // Social work route
+        path: '/activity/:id',
         element: (
           <PrivateRoute>
-            <Profile/>
+            <ActivityDetails />
           </PrivateRoute>
         ),
       },
-
       {
-        path: '/aboutus', // Social work route
+        path:'/bloodGrp',
+        element:<PrivateRoute><BloodGrp></BloodGrp></PrivateRoute>
+      }
+      ,
+      {
+        path: '/profile',
         element: (
           <PrivateRoute>
-            <AboutUs></AboutUs>
+            <Profile />
           </PrivateRoute>
         ),
       },
-      
+      {
+        path: '/aboutus',
+        element: (
+          <PrivateRoute>
+            <AboutUs />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
-  { path: '/login', element: <Login /> }, // Login page
-  { path: '/signup', element: <SignUp /> }, // Signup page
-  // Dashboard routes
+  { path: '/login', element: <Login /> },
+  { path: '/signup', element: <SignUp /> },
   {
     path: '/deshbroad',
     element: <PrivateRoute><DeshBroad /></PrivateRoute>,
     children: [
-      {
-        path: '/deshbroad',
-        element: <PrivateRoute><Statistic /></PrivateRoute>,
-      },
-      {
-        path: '/deshbroad/workPublished',
-        element: <PrivateRoute><WorkPublished /></PrivateRoute>,
-      },
-      {
-        path: '/deshbroad/userList',
-        element: <PrivateRoute><UserList /></PrivateRoute>,
-      },
-      {
-        path: '/deshbroad/contactMessage',
-        element: <PrivateRoute><ContactMessage /></PrivateRoute>,
-      },
-      {
-        path: '/deshbroad/publishedDetails',
-        element: <PrivateRoute><PublishedDetails /></PrivateRoute>,
-      },
-
-     
+      { index: true, element: <Statistic /> },
+      { path: 'workPublished', element: <WorkPublished /> },
+      { path: 'userList', element: <UserList /> },
+      { path: 'contactMessage', element: <ContactMessage /> },
+      { path: 'publishedDetails', element: <PublishedDetails /> },
+      { path: 'blogManagement', element: <BlogManagement></BlogManagement> },
     ],
   },
+  
 ]);

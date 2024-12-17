@@ -3,8 +3,9 @@ import './UserList.css'; // Import the CSS file for styling
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [filteredUsers, setFilteredUsers] = useState([]); // State to hold filtered users
-  const [filter, setFilter] = useState('all'); // State to track the selected filter (all, admin, user)
+  const [filteredUsers, setFilteredUsers] = useState([]); 
+  const [filter, setFilter] = useState('all'); 
+  const [searchTerm, setSearchTerm] = useState(''); 
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -12,53 +13,67 @@ const UserList = () => {
         const response = await fetch('https://hafeez-para-server-site.vercel.app/googleUsers');
         const data = await response.json();
         setUsers(data);
-        filterUsers(filter, data); // Call filterUsers initially to set filteredUsers
+        setFilteredUsers(data); 
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     };
 
     fetchUsers();
-  }, []); // Only run this effect once when the component mounts
+  }, []); 
 
-  // Function to filter users based on role
-  const filterUsers = (role, usersData = users) => {
-    setFilter(role); // Update the selected filter
-    if (role === 'all') {
-      setFilteredUsers(usersData); // Show all users
-    } else {
-      setFilteredUsers(usersData.filter(user => user.role === role)); // Filter users by role
-    }
+  const filterUsers = (role, search = '') => {
+    const filteredByRole = role === 'all' ? users : users.filter(user => user.role === role);
+    
+    const finalFilteredUsers = filteredByRole.filter(user => 
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilteredUsers(finalFilteredUsers);
   };
 
-  // Handle select change
   const handleSelectChange = (e) => {
     const selectedRole = e.target.value;
-    filterUsers(selectedRole);
+    setFilter(selectedRole); 
+    filterUsers(selectedRole, searchTerm);
+  };
+
+  const handleSearchChange = (e) => {
+    const newSearchTerm = e.target.value;
+    setSearchTerm(newSearchTerm);
+    filterUsers(filter, newSearchTerm);
   };
 
   return (
-    <div className="user-list-container">
-      <h1>All Users List</h1>
+    <div className="user-list-container p-4">
+      <h1 className="text-2xl font-bold mb-4">All Users List</h1>
 
-      {/* Select dropdown for filtering */}
-      <div className="filter-select">
-        <label htmlFor="role-filter">Filter by role: </label>
-        <select id="role-filter" value={filter} onChange={handleSelectChange}>
+      <div className="filter-select mb-4">
+        <label htmlFor="role-filter" className="mr-2">Filter by role: </label>
+        <select id="role-filter" value={filter} onChange={handleSelectChange} className="border border-blue-300 rounded p-2">
           <option value="all">All</option>
           <option value="admin">Admin</option>
           <option value="user">User</option>
         </select>
       </div>
 
-      {/* Render the filtered users */}
-      <div className="user-cards z-60 ">
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="border border-blue-300 rounded p-2 w-full"
+        />
+      </div>
+
+      <div className="user-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredUsers.map(user => (
-          <div key={user._id} className="user-card">
-            <img src={user.photo} alt={user.name} className="user-photo" />
-            <h2>{user.name}</h2>
-            <p className="user-email">{user.email}</p>
-            <p className="user-role">{user.role}</p>
+          <div key={user._id} className="user-card border rounded-lg p-4 shadow-lg">
+            <img src={user.photo} alt={user.name} className="user-photo rounded-full w-16 h-16 mb-2" />
+            <h2 className="text-lg font-semibold">{user.name}</h2>
+            <p className="user-email text-gray-600">{user.email}</p>
+            <p className="user-role text-gray-500 ">{user.role}</p>
           </div>
         ))}
       </div>

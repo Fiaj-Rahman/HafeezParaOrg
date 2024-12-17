@@ -8,6 +8,10 @@ export default withMT({
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        'open-sans': ['Open Sans', 'sans-serif'],
+      },
       keyframes: {
         animatedgradient: {
           '0%': { backgroundPosition: '0% 50%' },
@@ -26,5 +30,8 @@ export default withMT({
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 })
 

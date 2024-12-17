@@ -39,14 +39,15 @@ const PublishedDetails = () => {
         ReceiveMoney,
         CostMoney,
         image: imageUrl,
-        userName: user?.displayName,  // Add user's name
-        userImage: user?.photoURL,    // Add user's photo
+        userName: user?.displayName || "Guest",  // Default to "Guest" if not logged in
+        userEmail: user?.email || "defaultEmail@example.com",  // Default email
+        userImage: user?.photoURL || "defaultImageURL", // Optional fallback
       };
 
       const response = await axios.post("https://hafeez-para-server-site.vercel.app/publish", usersheetValue);
       if (response.data.success) {
         toast.success("Published successfully");
-        navigate("/"); // Navigate to home after submission
+        navigate("/deshbroad/blogManagement"); // Navigate to home after submission
       }
     } catch (err) {
       toast.error("Error: " + err.message);

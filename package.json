@@ -10,20 +10,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@egjs/react-flicking": "^4.11.4",
     "@emailjs/browser": "^4.4.1",
     "@material-tailwind/react": "^2.1.10",
     "@tanstack/react-query": "^5.56.2",
     "axios": "^1.7.7",
+    "chart.js": "^4.4.5",
     "firebase": "^10.13.1",
     "font-awesome": "^4.7.0",
+    "ionicons": "^7.4.0",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
     "react-date-range": "^2.0.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.26.2",
-    "react-spinners": "^0.14.1"
+    "react-spinners": "^0.14.1",
+    "recharts": "^2.13.0",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

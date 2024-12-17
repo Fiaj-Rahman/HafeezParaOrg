@@ -1,98 +1,110 @@
+import { useState, useEffect, useContext } from "react";
 import { Carousel, Typography, Button } from "@material-tailwind/react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Carousels = () => {
+  const { user } = useContext(AuthContext);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const slides = [
+    {
+      image: "/01.jpg",
+      title: "হাফেজপাড়া জনকল্যাণ সংস্থার পক্ষ থেকে আপনাকে স্বাগত",
+      description:
+        "হাফেজপাড়া জনকল্যাণ সংস্থা একটি সামাজিক ও অরাজনৈতিক সংগঠন, যা সমাজের সার্বিক উন্নয়নে নিবেদিত।",
+    },
+    {
+      image: "/02.jpg",
+      title: "হাফেজপাড়া জনকল্যাণ সংস্থার লক্ষ্য",
+      description:
+        "আমাদের লক্ষ্য একটি এমন সমাজ তৈরি করা যেখানে প্রতিটি মানুষ শান্তি ও শৃঙ্খলার সাথে বসবাস করতে পারে।",
+    },
+    {
+      image: "/03.jpg",
+      title: "হাফেজপাড়া জনকল্যাণ সংস্থার কার্যক্রম",
+      description:
+        "হাফেজপাড়া জনকল্যাণ সংস্থা শিক্ষা, স্বাস্থ্যসেবা, দারিদ্র্য বিমোচন, এবং সামাজিক সচেতনতা বৃদ্ধির মাধ্যমে সমাজের উন্নয়নে কাজ করে যাচ্ছে।",
+    },
+    {
+      image: "/04.jpg",
+      title: "আমাদের সাথে থাকুন",
+      description:
+        "আসুন, আমরা একসাথে সমাজকে আরও সুন্দর, সুশৃঙ্খল এবং বাসযোগ্য করে তুলি।",
+    },
+  ];
+
   return (
-    <div style={{ height: '600px' }}>
-      <Carousel className="rounded-xl">
-        <div className="relative h-full w-full">
-          <img src="/01.jpg" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
-            <div className="w-3/4 text-center md:w-2/4">
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-4 text-4xl md:text-3xl lg:text-4xl"
-              >
-                হাফেজপাড়া জনকল্যাণ সংস্থার পক্ষ থেকে আপনাকে স্বাগত
-              </Typography>
-              <Typography
-                variant="lead"
-                color="white"
-                className="mb-12 opacity-80"
-              >
-                হাফেজপাড়া জনকল্যাণ সংস্থা একটি সামাজিক ও অরাজনৈতিক সংগঠন, যা সমাজের সার্বিক উন্নয়নে নিবেদিত।
-              </Typography>
-              
+    <div className="h-screen -mt-3">
+      <Carousel
+        className="rounded-xl"
+        activeIndex={activeIndex}
+        onChange={(index) => setActiveIndex(index)}
+      >
+        {slides.map((slide, index) => (
+          <div key={index} className="relative h-full w-full">
+            <img
+              src={slide.image}
+              alt={`Slide ${index + 1}`}
+              className="h-full w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
+            />
+            <div className="absolute inset-0 grid h-full w-full place-items-center bg-gradient-to-t from-black/90 to-transparent">
+              <div className="text-center p-4 md:w-2/4 lg:w-1/3">
+                <Typography
+                  variant="h1"
+                  color="white"
+                  className="mb-4 text-3xl md:text-4xl lg:text-4xl font-poppins font-semibold drop-shadow-lg"
+                >
+                  {slide.title}
+                </Typography>
+                <Typography
+                  variant="lead"
+                  color="white"
+                  className="mb-12 opacity-80 text-lg md:text-xl lg:text-xl font-open-sans drop-shadow-md"
+                >
+                  {slide.description}
+                </Typography>
+                {!user ? (
+                  <div className="flex justify-center gap-4">
+                    <Button
+                      as={Link}
+                      to="/login"
+                      variant="gradient"
+                      color="purple"
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      as={Link}
+                      to="/signup"
+                      variant="gradient"
+                      color="teal"
+                    >
+                      Sign Up
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex justify-center">
+                    <Link
+                      to="/bloodGrp"
+                      className="px-6 py-3 text-white bg-red-500 rounded-lg hover:bg-red-600 transition duration-300"
+                    >
+                      Go to Blood Group Page
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="relative h-full w-full">
-          <img src="/02.jpg" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 grid h-full w-full items-center bg-black/75">
-            <div className="w-3/4 pl-12 md:w-2/4 md:pl-20 lg:pl-32">
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-4 text-4xl md:text-4xl lg:text-5xl"
-              >
-                হাফেজপাড়া জনকল্যাণ সংস্থার লক্ষ্য
-              </Typography>
-              <Typography
-                variant="lead"
-                color="white"
-                className="mb-12 opacity-80"
-              >
-                আমাদের লক্ষ্য একটি এমন সমাজ তৈরি করা যেখানে প্রতিটি মানুষ শান্তি ও শৃঙ্খলার সাথে বসবাস করতে পারে। আমরা সমাজের প্রতিটি সদস্যকে উৎসাহিত করি সমাজের কল্যাণে অবদান রাখার জন্য।
-              </Typography>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative h-full w-full">
-          <img src="/03.jpg" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 grid h-full w-full items-end bg-black/75">
-            <div className="w-3/4 pl-12 pb-12 md:w-2/4 md:pl-20 md:pb-20 lg:pl-32 lg:pb-32">
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-              >
-               হাফেজপাড়া জনকল্যাণ সংস্থার কার্যক্রম
-              </Typography>
-              <Typography
-                variant="lead"
-                color="white"
-                className="mb-12 opacity-80"
-              >
-                হাফেজপাড়া জনকল্যাণ সংস্থা শিক্ষা, স্বাস্থ্যসেবা, দারিদ্র্য বিমোচন, এবং সামাজিক সচেতনতা বৃদ্ধির মাধ্যমে সমাজের উন্নয়নে কাজ করে যাচ্ছে।
-              </Typography>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="relative h-full w-full">
-          <img src="/04.jpg" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 grid h-full w-full items-end bg-black/75">
-            <div className="w-3/4 pl-12 pb-12 md:w-2/4 md:pl-20 md:pb-20 lg:pl-32 lg:pb-32">
-              <Typography
-                variant="h1"
-                color="white"
-                className="mb-4 text-4xl md:text-4xl lg:text-5xl"
-              >
-               আমাদের সাথে থাকুন
-              </Typography>
-              <Typography
-                variant="lead"
-                color="white"
-                className="mb-12 opacity-80"
-              >
-                আসুন, আমরা একসাথে সমাজকে আরও সুন্দর, সুশৃঙ্খল এবং বাসযোগ্য করে তুলি। আমাদের উদ্যোগে অংশগ্রহণ করুন এবং সমাজের উন্নয়নে আপনার অবদান রাখুন।
-              </Typography>
-            </div>
-          </div>
-        </div>
+        ))}
       </Carousel>
     </div>
   );

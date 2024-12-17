@@ -481,6 +481,7 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { useMutation } from "@tanstack/react-query";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
 import { useState } from "react";
+import { MdDownloading } from "react-icons/md";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -578,7 +579,7 @@ const SignUp = () => {
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Welcome to হাফেজপাড়া জনকল্যাণ সংস্থা</p>
+          <p className="text-sm text-gray-600">হাফেজপাড়া জনকল্যাণ সংস্থার ওয়েবসাইটে আপনাকে স্বাগতম</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
@@ -586,21 +587,21 @@ const SignUp = () => {
           </div>
           <div>
             <button disabled={loading} type="submit" className="bg-red-500 w-full rounded-md py-3 text-black">
-              {loading ? <TbFidgetSpinner className="animate-spin m-auto" /> : "Sign Up"}
+              {loading ? <TbFidgetSpinner className="animate-spin m-auto" /> : <MdDownloading className="m-auto animate-spin text-xl" />}
             </button>
           </div>
         </form>
-        <div className="flex items-center pt-4 space-x-1">
+        {/* <div className="flex items-center pt-4 space-x-1">
+          <div className="flex-1 h-px sm:w-16 dark:bg-gray-600"></div>
+          <p className="px-3 text-sm dark:text-gray-600 font-bold text-center">নিচের বাটনে ক্লিক করে গুগল দিয়ে সাইন আপ করুন</p>
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">Signup with social accounts</p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-        </div>
+        </div> */}
         <div
           onClick={handleGoogleSignIn}
           className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
         >
           <FcGoogle size={32} />
-          <p>Continue with Google</p>
+          <p>সাইন আপ-এর জন্য এখানে ক্লিক করুন</p>
         </div>
         <p className="px-6 text-sm text-center text-gray-400">
           Already have an account yet?{" "}
